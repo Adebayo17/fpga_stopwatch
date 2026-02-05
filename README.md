@@ -54,18 +54,25 @@ The stopwatch logic was verified in two stages:
 
 ## Pinout Mapping
 ### Pmod SSD (Connected to Port JB)
-The 7-segment display must be plugged into the **JB** header (bottom row aligned, ensuring VCC/GND match).
+The 7-segment display spans JA and JB headers.
+Ensure the Pmod is oriented correctly (bottom row aligned, VCC/GND matched).
 
-| Pmod Signal   | Arty Port (JB) | FPGA Pin | Description         |
-| :---          | :---           | :---     | :---                |
-| **AA**        | JB[1]          | W14      | Segment A           |
-| **AB**        | JB[2]          | Y14      | Segment B           |
-| **AC**        | JB[3]          | T11      | Segment C           |
-| **AD**        | JB[4]          | T10      | Segment D           |
-| **AE**        | JB[7]          | V16      | Segment E           |
-| **AF**        | JB[8]          | W16      | Segment F           |
-| **AG**        | JB[9]          | V12      | Segment G           |
-| **C**         | JB[10]         | W13      | Digit Select (CAT)  |
+- **Segments A–D → JA**
+- **Segments E–G → JB**
+- **Digit Select → JB**
+
+![FPGA Board Assembly](docs/demo/fpga_board_assembly.jpg)
+
+| Segment | Pmod Signal | Arty Port | FPGA Pin | HDL Signal  | Description        |
+| :---:   | :---        | :---      | :---     | :---        | :---               |
+| A       | AA          | JA[7]     | U18      | led_seg[0]  | Segment A          |
+| B       | AB          | JA[8]     | U19      | led_seg[1]  | Segment B          |
+| C       | AC          | JA[9]     | W18      | led_seg[2]  | Segment C          |
+| D       | AD          | JA[10]    | W19      | led_seg[3]  | Segment D          |
+| E       | AE          | JB[7]     | V16      | led_seg[4]  | Segment E          |
+| F       | AF          | JB[8]     | W16      | led_seg[5]  | Segment F          |
+| G       | AG          | JB[9]     | V12      | led_seg[6]  | Segment G          |
+| CAT     | C           | JB[10]    | W13      | pmod_sel    | Digit Select (CAT) |
 
 ### System Controls
 | Function      | Label on Board | FPGA Pin | Description         |
@@ -104,3 +111,8 @@ fpga_stopwatch/
     - Click **Generate Bitstream**.
     - Open **Hardware Manager -> Auto Connect**.
     - Program the device.
+
+
+## Demo Video
+
+https://github.com/Adebayo17/fpga_stopwatch/tree/master/docs/demo/stopwatch_demo.mp4
