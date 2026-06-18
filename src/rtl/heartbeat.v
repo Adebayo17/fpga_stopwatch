@@ -22,8 +22,8 @@
 
 module heartbeat #(
     // Default parameter for 100ms with a 125 MHz Clock
-    // 125_000_000 Hz / 100 Hz = 1_250_000 
-    parameter integer MAX_COUNT = 1_250_000
+    // 125_000_000 Hz / 100 Hz = 12_500_000 
+    parameter integer MAX_COUNT = 12_500_000
 )(
     input  wire clk,        // Clock
     input  wire rst,        // Synchronous Reset

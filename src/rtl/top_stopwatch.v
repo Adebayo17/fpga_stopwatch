@@ -29,7 +29,7 @@ module top_stopwatch(
     );
     
     // Internal Signals
-    wire        tick_10ms;
+    wire        tick_1s;
     wire [3:0]  w_digit_0;
     wire [3:0]  w_digit_1;
     wire        btn_start_clean;
@@ -44,20 +44,20 @@ module top_stopwatch(
         .btn_out        (btn_start_clean)
     );
     
-    // 1. Heartbeat Instance (10 ms = 1_250_000 cycles)
+    // 1. Heartbeat Instance (1s = 125_000_000 cycles)
     heartbeat #(
-        .MAX_COUNT(1_250_000)
+        .MAX_COUNT(125_000_000)
     ) u_heartbeat(
         .clk            (clk),
         .rst            (btn_rst),
-        .tick           (tick_10ms)
+        .tick           (tick_1s)
     );
     
     // 2. Stopwatch Core Instance
     stopwatch_core u_core(
         .clk            (clk),
         .rst            (btn_rst),
-        .tick_i         (tick_10ms),
+        .tick_i         (tick_1s),
         .start_stop_i   (btn_start_clean),
         .digit_0        (w_digit_0),
         .digit_1        (w_digit_1)
